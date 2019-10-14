@@ -1,0 +1,53 @@
+---
+- name: Install zsh packages
+  become: True
+  package:
+    name:
+      - zsh
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
+    state: present
+
+- name: Ensure configuration directories exist
+  become: True
+  file:
+    path: "{{ zsh_homedir }}/.{{ item }}"
+    state: directory
+    owner: "{{ zsh_user }}"
+    group: "{{ zsh_user }}"
+  with_items:
+    - "zshrc.d"
+    - "zprofile.d"
+
+- name: Configure .zshrc and .zprofile
+  become: True
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ zsh_homedir }}/.{{ item }}"
+    owner: "{{ zsh_user }}"
+    group: "{{ zsh_user }}"
+  with_items:
+    - zshrc
+    - zprofile
+
+- name: Configure base templates for zshrc
+  become: True
+  template:
+    src: "zshrc.d/{{ item }}.j2"
+    dest: "{{ zsh_homedir }}/.zshrc.d/{{ item }}"
+    owner: "{{ zsh_user }}"
+    group: "{{ zsh_user }}"
+  with_items:
+    - 00-dircolors
+    - 10-compinit
+    - 20-base
+    - 90-zsh-plugins
+
+- name: Configure base templates for zprofile
+  become: True
+  template:
+    src: "zprofile.d/{{ item }}.j2"
+    dest: "{{ zsh_homedir }}/.zprofile.d/{{ item }}"
+    owner: "{{ zsh_user }}"
+    group: "{{ zsh_user }}"
+  with_items: []

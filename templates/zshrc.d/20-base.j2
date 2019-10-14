@@ -1,0 +1,39 @@
+# {{ ansible_managed }}
+
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt histignorespace
+setopt histignoredups
+setopt appendhistory notify
+unsetopt autocd beep extendedglob nomatch
+
+# Load promptinit
+autoload -Uz promptinit
+promptinit
+setopt prompt_subst
+autoload -Uz vcs_info
+
+autoload -U select-word-style
+select-word-style bash
+
+zstyle ':vcs_info:*' actionformats \
+    '(%F{yellow}%b%f)'
+zstyle ':vcs_info:*' formats \
+    '(%F{yellow}%b%f)'
+zstyle ':vcs_info:*' enable git
+
+precmd() {
+    vcs_info
+}
+
+PROMPT=$'%B%F{green}%n%f%b@%B%F{{ "{" }}{{ zsh_host_color }}{{ "}" }}%m%f%b:%B%F{blue}%~%f%b %B${vcs_info_msg_0_}%b$prompt_newline%# '
+RPROMPT="%T"
+
+alias ls='ls --color'
+alias grep='grep --color'
+
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+bindkey "^H" backward-kill-word
+bindkey '^R' history-incremental-search-backward

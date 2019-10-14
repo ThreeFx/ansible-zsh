@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+# Load files from the configuration directory
+for file in {{ zsh_homedir }}/.zshrc.d/*(.); do
+    echo $file
+done

@@ -1,0 +1,19 @@
+---
+name: molecule test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v1
+        with:
+          path: zsh
+      - name: Install python-virtualenv
+        run: sudo apt-get update && sudo apt-get install python-virtualenv
+      - name: Set up virtualenv
+        run: python -m virtualenv /tmp/venv -p python3
+      - name: Install molecule in the virtual env
+        run: source /tmp/venv/bin/activate && pip install molecule docker
+      - name: Run molecule test
+        run: source /tmp/venv/bin/activate && molecule test

@@ -1,0 +1,22 @@
+# {{ ansible_managed }}
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored
+zstyle ':completion:*' expand suffix
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' ignore-parents parent pwd ..
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=* r:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' original false
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' substitute 1
+zstyle :compinstall filename '/home/bfiedler/.zshcomp'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
