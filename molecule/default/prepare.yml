@@ -1,0 +1,8 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Create test user
+      user:
+        name: testuser
+        home: /home/testuser
