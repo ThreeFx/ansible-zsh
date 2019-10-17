@@ -2,7 +2,7 @@
 name: molecule test
 on: [push]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
