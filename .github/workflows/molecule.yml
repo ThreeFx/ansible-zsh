@@ -9,8 +9,9 @@ jobs:
         uses: actions/checkout@v1
         with:
           path: zsh
-      - name: Check out dependency
-        run: git clone https://github.com/ThreeFx/ansible-homedir ../homedir
+      - name: Check out dependencies
+        run: >
+          git clone https://github.com/ThreeFx/ansible-update-packages ../update-packages
       - name: Install python-virtualenv
         run: sudo apt-get update && sudo apt-get install python-virtualenv
       - name: Set up virtualenv
