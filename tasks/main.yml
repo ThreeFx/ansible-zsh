@@ -10,6 +10,7 @@
 
 - name: Ensure configuration directories exist
   become: True
+  become_user: "{{ zsh_user }}"
   file:
     path: "~/.{{ item }}"
     state: directory
@@ -21,6 +22,7 @@
 
 - name: Configure .zshrc and .zprofile
   become: True
+  become_user: "{{ zsh_user }}"
   template:
     src: "{{ item }}.j2"
     dest: "~/.{{ item }}"
@@ -32,6 +34,7 @@
 
 - name: Configure base templates for zshrc
   become: True
+  become_user: "{{ zsh_user }}"
   template:
     src: "zshrc.d/{{ item }}.j2"
     dest: "~/.zshrc.d/{{ item }}"
@@ -45,6 +48,7 @@
 
 - name: Configure base templates for zprofile
   become: True
+  become_user: "{{ zsh_user }}"
   template:
     src: "zprofile.d/{{ item }}.j2"
     dest: "~/.zprofile.d/{{ item }}"
