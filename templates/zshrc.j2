@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
 # Load files from the configuration directory
-for file in {{ zsh_homedir }}/.zshrc.d/*(.); do
+for file in $HOME/.zshrc.d/*(.); do
     source $file
 done

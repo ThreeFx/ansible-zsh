@@ -1,10 +1,6 @@
 ---
 dependencies:
   - role: update-packages
-  - role: homedir
-    vars:
-      homedir_user: "{{ zsh_user }}"
-      homedir_result: "zsh_homedir"
 # List your role dependencies here, one per line. Be sure to remove the '[]' above,
 # if you add dependencies to this list.
 
