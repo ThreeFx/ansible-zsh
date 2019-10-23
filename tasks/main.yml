@@ -55,3 +55,9 @@
     owner: "{{ zsh_user }}"
     group: "{{ zsh_user }}"
   with_items: []
+
+- name: Set zsh as default shell
+  become: True
+  user:
+    name: "{{ zsh_user }}"
+    shell: /usr/bin/zsh
