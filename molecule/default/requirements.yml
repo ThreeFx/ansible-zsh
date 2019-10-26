@@ -1,0 +1,5 @@
+---
+- src: git@github.com:ThreeFx/ansible-update-packages
+  scm: git
+  name: update-packages
+  version: master
