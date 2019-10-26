@@ -6,3 +6,7 @@
       user:
         name: testuser
         home: /home/testuser
+    # Sadly, docker images often have stale caches, especially for Arch Linux
+    - name: Update package caches
+      include_role:
+        name: update-packages
