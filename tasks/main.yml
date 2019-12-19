@@ -54,7 +54,8 @@
     dest: "~/.zprofile.d/{{ item }}"
     owner: "{{ zsh_user }}"
     group: "{{ zsh_user }}"
-  with_items: []
+  with_items:
+    - 50-empty
 
 - name: Set zsh as default shell
   become: True
